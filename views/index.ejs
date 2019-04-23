@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>home</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <header>
+      <h1>Book Store</h1>
+      <nav>
+        <ul class="nav">
+          <li><h1><a href="/">Home</a></h1></li>
+          <li><h1><a href="/books">Add books</a></h1></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="book-list">
+      <% books.forEach( book => { %>
+        <div class="card">
+          <h3> <span class="title"> title :</span> <%= book.title  %> </h3>
+          <h3> <span class="title"> author:</span> <%= book.author  %> </h3>
+          <div>
+            <button class="btn" type="submit">
+              <a href="/books/<%= book._id %>/delete"> Delete</a>
+            </button>
+            <button class="btn" type="submit">
+              <a href="/books/<%= book._id %>/update">Edit</a>
+            </button>
+            <button class="btn" type="submit">
+              <a href="/books/<%= book._id %>/details">Details</a>
+            </button>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,85 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: #111;
+}
+
+a {
+  color: #00B7FF;
+  text-decoration: none;
+}
+
+header {
+	display: flex;
+	justify-content: space-between;
+	padding: 0 4%;
+}
+
+.title {
+	font-size: 20px;
+	color: green;
+}
+
+.nav {
+	display: flex;
+	list-style: none;
+}
+
+.nav li {
+	margin-left: 50px;
+}
+
+header h1 {
+	text-align: center;;
+	color: #f3f3f3;
+	font-style: italic;
+}
+
+.form input,textarea {
+	display: block;
+	width: 500px;
+	font-size: 22px;
+	border-radius: 4px;
+	border: 0.5px solid #999;
+	color: #666;
+	padding: 6px 12px;
+	margin: 10px auto;
+}
+
+.book-list {
+	display: flex;
+	justify-content: center;
+	list-style: none; 
+	flex-wrap: wrap;
+	align-items: center;
+	/*margin: 0 auto;*/
+}
+
+.card {
+	border-radius: 5px;
+	display: block;
+	box-shadow: 0 2px 20px 4px rgba(255,255,255,0.170);
+	padding: 20px 40px;
+	background-color: #000;
+	margin: 20px;
+	width: 300px;
+	word-break: break-word;
+}
+
+#sub-btn {
+	background: #111;
+	font-size: 18px;
+	color: #fff;
+	width: 200px;
+	padding: 10px 0;
+}
+
+h3 {
+	color: #f3f3f3;
+	font-style: italic;
+}
+
+.book-details {
+	margin: 0  auto;
+	width: 500px;
+}

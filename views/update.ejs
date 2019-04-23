@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Books</title>
+	<link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+	<header>
+		<h1>Book Store</h1>
+		<nav>
+  	<ul class="nav">
+  		<li><h1><a href="/">Home</a></h1></li>
+  		<li><h1><a href="/books">Add books</a></h1></li>
+  	</ul>
+	</header>
+
+	<form action="/books/:id/update-book" method="POST" class="form">
+		<input type="text" name="title" placeholder="Book title" value="<%= book.title%>"/>
+		<textarea type="text" rows="8" name="description" placeholder="description">
+			<%= book.description %>
+		</textarea>
+		<input type="Number" name="likes" placeholder="Likes" value="<%= book.likes%>"/>
+		<input type="date" name="created" value="<%= book.created %>" />
+		<input type="text" name="tags" placeholder="Tags" value="<%= book.tags%>"/>
+		<input type="text" name="author" placeholder="Author name" value="<%= book.author%>"/>
+		<input id="sub-btn" type="submit" value="Update"/>	
+	</form>
+</body>
+</html>
