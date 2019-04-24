@@ -1,9 +1,13 @@
 var express = require('express');
 var router = express.Router();
 var Book = require('../models/Book');
+var Author = require('../models/Author');
+
 
 router.get('/', function(req, res, next) {
-  res.render('form');
+	Author.find({}, (err, books) => {
+  	res.render('form', {books: books});
+	})
 });
 
 router.post('/', function(req, res, next) {

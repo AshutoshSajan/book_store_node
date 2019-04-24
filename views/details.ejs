@@ -10,7 +10,8 @@
       <nav>
         <ul class="nav">
           <li><h1><a href="/">Home</a></h1></li>
-          <li><h1><a href="/books">Add books</a></h1></li>
+          <li><h1><a href="/books">Add Books</a></h1></li>
+          <li><h1><a href="/author">Add Author</a></h1></li>
         </ul>
       </nav>
     </header>
@@ -22,7 +23,9 @@
       <h3> <span class="title"> likes:</span> <%= book.likes  %> </h3>
       <h3> <span class="title"> tegs:</span> <%= book.tegs  %> </h3>
       <h3> <span class="title"> created:</span> 
-        <%= book.created || typeof(book.created) === "object" ? new Date(book.created).toDateString() : "no dete available" %>
+        <%= book.created ?
+          typeof(book.created) === "object" ? book.created.toDateString() : book.created
+          : "no date available" %>
       </h3>
       
       <div>

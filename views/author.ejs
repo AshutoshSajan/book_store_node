@@ -16,19 +16,13 @@
 	  	</ul>
   	</nav>
 	</header>
-	
-	<form action="/books" method="POST" class="form">
-		<input type="text" name="title" placeholder="Book title" />
+
+	<form action="/author" method="POST" class="form">
+		<input type="text" name="name" placeholder="Name" />
 		<textarea type="text" rows="8" name="description" placeholder="description"></textarea>
-		<input type="Number" name="likes" placeholder="Likes" />
-		<input type="date" name="created" />
-		<input type="text" name="tags" placeholder="Tags" />
-		<select name="author">
-			<% books.forEach(book => { %>
-			  	<option value="<%= book._id %>"><%= book.name %></option>
-			<% }) %>
-		</select>
-		<input id="sub-btn" type="submit" value="ADD BOOKS" />	
+		<input type="Number" name="age" placeholder="Age" />
+		<input type="email" name="email" placeholder="Email"/>
+		<input id="sub-btn" type="submit" value="ADD AUTHOR" />	
 	</form>
 </body>
 </html>
