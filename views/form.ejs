@@ -6,26 +6,28 @@
 	<link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
+	<!-- header section -->
 	<header>
 		<h1>Book Store</h1>
 		<nav>
 	  	<ul class="nav">
 	  		<li><h1><a href="/">Home</a></h1></li>
-	  		<li><h1><a href="/books">Add Books</a></h1></li>
+	  		<li><h1><a href="/books">Add Book</a></h1></li>
 	  		<li><h1><a href="/author">Add Author</a></h1></li>
 	  	</ul>
   	</nav>
 	</header>
 	
+	<!-- form section -->
 	<form action="/books" method="POST" class="form">
 		<input type="text" name="title" placeholder="Book title" />
 		<textarea type="text" rows="8" name="description" placeholder="description"></textarea>
-		<input type="Number" name="likes" placeholder="Likes" />
+		<input type="Number" name="pages" placeholder="Pages" />
 		<input type="date" name="created" />
 		<input type="text" name="tags" placeholder="Tags" />
 		<select name="author">
-			<% books.forEach(book => { %>
-			  	<option value="<%= book._id %>"><%= book.name %></option>
+			<% authors.forEach(author => { %>
+			  	<option value="<%= author._id %>"><%= author.name %></option>
 			<% }) %>
 		</select>
 		<input id="sub-btn" type="submit" value="ADD BOOKS" />	

@@ -6,11 +6,22 @@ var Author = require('../models/Author');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	Book.find({}, (err, books) => {
-		if(err) next(err);
-		console.log(books, "inside index.js all books..............................");
-  	res.render('index', { books: books });
+	Book
+	.find()
+	.populate({
+		path: 'author',
+		select: "author",
+		model: 'Book',
+		populate: {
+			path: 'books',
+			select: 'books',
+			model :'Author',
+		}
 	})
+	.exec((err, books) => {
+		console.log(books, "books in index populate............................^^^^^");
+		res.render('index', { books: books });
+	});
 });
 
 module.exports = router;

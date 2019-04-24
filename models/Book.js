@@ -5,8 +5,8 @@ var Author = require('./Author');
 var bookSchema = new Schema ({
 	title: {type: String, required: true},
 	description: {type: String, required: true},
-	likes: {type: Number, default: 0},
-	author: Schema.Types.ObjectId,
+	pages: {type: Number, default: 0},
+	author: {type: Schema.Types.ObjectId, ref: 'Author', required: true},
 	created: { type: Date, default: new Date() },
 	time: { type:String, default: new Date().toLocaleTimeString() },
 	tags: [String],

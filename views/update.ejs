@@ -17,12 +17,14 @@
 	</header>
 
 	<form action="/books/:id/update-book" method="POST" class="form">
-		<input type="text" name="title" placeholder="Book title" value="<%= book.title%>"/>
-		<textarea type="text" rows="8" name="description" placeholder="description">
+		<input type="text" name="title" placeholder="Book title" value="<%= book.title%>" />
+		<textarea type="text" rows="8" name="description" >
 			<%= book.description %>
 		</textarea>
-		<input type="Number" name="likes" placeholder="Likes" value="<%= book.likes%>"/>
-		<input type="date" name="created" value="<%= book.created %>" />
+		<input type="Number" name="pages" placeholder="Likes" value="<%= book.pages%>"/>
+		<input type="text" value="<%= book.created.toLocaleDateString() %>"/>
+		<input type="date" name="created" 
+		value="<%= book.created.toLocaleDateString().split('/').sort((a,b)=> a - b ).join("/") %>" />
 		<input type="text" name="tags" placeholder="Tags" value="<%= book.tags%>"/>
 		<input type="text" name="author" placeholder="Author name" value="<%= book.author%>"/>
 		<input id="sub-btn" type="submit" value="Update"/>	

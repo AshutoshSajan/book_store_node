@@ -17,12 +17,12 @@
     </header>
 
     <div class="card book-details">
-      <h3> <span class="title"> title :</span> <%= book.title  %> </h3>
-      <h3> <span class="title"> author:</span> <%= book.author  %> </h3>
-      <h3> <span class="title"> description:</span> <%= book.description  %> </h3>
-      <h3> <span class="title"> likes:</span> <%= book.likes  %> </h3>
-      <h3> <span class="title"> tegs:</span> <%= book.tegs  %> </h3>
-      <h3> <span class="title"> created:</span> 
+      <h3> <span class="title"> Title :</span> <%= book.title  %> </h3>
+      <h3> <span class="title"> Author:</span> <%= book.author  %> </h3>
+      <h3> <span class="title"> Description:</span> <%= book.description  %> </h3>
+      <h3> <span class="title"> Pages:</span> <%= book.pages  %> </h3>
+      <h3> <span class="title"> Tags:</span> <%= book.tags  %> </h3>
+      <h3> <span class="title"> Created:</span> 
         <%= book.created ?
           typeof(book.created) === "object" ? book.created.toDateString() : book.created
           : "no date available" %>
