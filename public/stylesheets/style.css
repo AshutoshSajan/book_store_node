@@ -89,3 +89,53 @@ h3 {
 	margin: 0  auto;
 	width: 500px;
 }
+
+.book-cards {
+	display: flex;
+	justify-content: space-around;
+}
+
+.card p {
+	color: #fff;
+}
+
+/*sudo elements and hover effect on them*/
+/*.sudo {
+	color: #fff;
+	background-color: red;
+	transition: all 500ms ease-out;
+}
+
+.sudo::before { 
+	content: "created using css pseudo elements";
+	color: black;
+	background-color: green;
+	padding: 4px 10px;
+	transition: all 500ms ease-out;
+ }
+
+ .sudo:hover:after{
+ 	color: white;
+ 	font-size: 22px;
+ 	background-color: black;
+ 	cursor: pointer;
+ }
+
+ .sudo::after { 
+	content: "created using css pseudo elements" ;
+	color: black;
+	background-color: green;
+	padding: 4px 10px;
+	transition: all 500ms ease-out;
+ }
+
+ .sudo:hover:before{
+ 	color: white;
+ 	font-size: 22px;
+ 	background-color: black;
+ 	cursor: pointer;
+ }*/
+
+
+
+

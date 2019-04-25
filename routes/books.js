@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
 	var data = req.body;
-	console.log(req.body, "inside book created...............................")
+	// console.log(req.body, "inside book created...............................")
 	if(req.body.title) {
 		Book.create(data, (err, book) => {
 			console.log('book created', book);
@@ -47,10 +47,10 @@ router.get('/:id/update', function(req, res, next) {
 
 router.post('/:id/update-book', function(req, res, next) {
 	var data = req.body
-	console.log(id, "in update-book....................................");
+	// console.log(id, "in update-book....................................");
 	Book.findOneAndUpdate({_id: id}, data, (err, book) => {
 		if(err) console.log(err);
-		console.log(book,"book in update book route................................");
+		// console.log(book,"book in update book route................................");
 		res.redirect("/");
 	})
 });
@@ -61,20 +61,16 @@ router.get('/:id/details', function(req, res, next) {
 	.findOne({_id: id})
 	.populate({
 		path: 'author',
-		select: "author",
-		model: 'Book',
 		populate: [{
 			path: 'books',
+			model: 'Book',
 		}]
 	})
 	.exec((err, book) => {
-		console.log(book, "book in details.........................");
+		// console.log(book, "book in details.........................");
 		res.render('details', { book: book })
 	})
 	
 });
-
-// /books/<%= book._id %>/details
-
 
 module.exports = router;

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>home</title>
+    <title>Home</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
@@ -12,15 +12,18 @@
           <li><h1><a href="/">Home</a></h1></li>
           <li><h1><a href="/books">Add Books</a></h1></li>
           <li><h1><a href="/author">Add Author</a></h1></li>
+          <li><h1><a href="/author/showAuthors">Authors</a></h1></li>
         </ul>
       </nav>
     </header>
+
+    <!-- <p class="sudo" >hello</p> -->
 
     <div class="book-list">
       <% books.forEach( book => { %>
         <div class="card">
           <h3> <span class="title"> Title :</span> <%= book.title  %> </h3>
-          <h3> <span class="title"> Author:</span> <%= book.author  %> </h3>
+          <h3> <span class="title"> Author:</span> <%= book.author.name  %> </h3>
           <div>
             <button class="btn" type="submit">
               <a href="/books/<%= book._id %>/delete"> Delete</a>

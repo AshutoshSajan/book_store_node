@@ -8,18 +8,9 @@ var Author = require('../models/Author');
 router.get('/', function(req, res, next) {
 	Book
 	.find()
-	.populate({
-		path: 'author',
-		select: "author",
-		model: 'Book',
-		populate: {
-			path: 'books',
-			select: 'books',
-			model :'Author',
-		}
-	})
+	.populate('author', 'name')
 	.exec((err, books) => {
-		console.log(books, "books in index populate............................^^^^^");
+		// console.log(books, "books in index populate............................^^^^^");
 		res.render('index', { books: books });
 	});
 });

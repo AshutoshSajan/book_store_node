@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Author Books</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <header>
+      <h1>Book Store</h1>
+      <nav>
+        <ul class="nav">
+          <li><h1><a href="/">Home</a></h1></li>
+          <li><h1><a href="/books">Add Books</a></h1></li>
+          <li><h1><a href="/author">Add Author</a></h1></li>
+          <li><h1><a href="/author/showAuthors">Authors</a></h1></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="book-list">
+      <% author.books.forEach( book => { %>
+      	<div class="card">
+      		<p> <span class="title"> title :</span> <%= book.title %></p>
+      		<p> <span class="title"> description :</span> <%= book.description %></p>
+      		<p> <span class="title"> pages :</span> <%= book.pages %></p>
+      		<p> <span class="title"> tags :</span> <%= book.tags %></p>
+      	</div>
+      <% }) %>
+    </div>
+
+  </body>
+</html>

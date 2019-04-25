@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Books</title>
+	<title>Add Books</title>
 	<link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
@@ -14,6 +14,7 @@
 	  		<li><h1><a href="/">Home</a></h1></li>
 	  		<li><h1><a href="/books">Add Book</a></h1></li>
 	  		<li><h1><a href="/author">Add Author</a></h1></li>
+	  		<li><h1><a href="/author/showAuthors">Authors</a></h1></li>
 	  	</ul>
   	</nav>
 	</header>
@@ -25,7 +26,8 @@
 		<input type="Number" name="pages" placeholder="Pages" />
 		<input type="date" name="created" />
 		<input type="text" name="tags" placeholder="Tags" />
-		<select name="author">
+		<select name="author" required >
+			<option> Select an author </option>
 			<% authors.forEach(author => { %>
 			  	<option value="<%= author._id %>"><%= author.name %></option>
 			<% }) %>

@@ -1,27 +1,31 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Details</title>
+    <title>Book Details</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
     <header>
-      <h1>Book Details</h1>
+      <h1>Book Store</h1>
       <nav>
         <ul class="nav">
           <li><h1><a href="/">Home</a></h1></li>
           <li><h1><a href="/books">Add Books</a></h1></li>
           <li><h1><a href="/author">Add Author</a></h1></li>
+          <li><h1><a href="/author/showAuthors">Authors</a></h1></li>
         </ul>
       </nav>
     </header>
 
+    <% title = book.title -%>
+
     <div class="card book-details">
       <h3> <span class="title"> Title :</span> <%= book.title  %> </h3>
-      <h3> <span class="title"> Author:</span> <%= book.author  %> </h3>
+      <h3> <span class="title"> Author:</span> <%= book.author.name %> </h3>
       <h3> <span class="title"> Description:</span> <%= book.description  %> </h3>
       <h3> <span class="title"> Pages:</span> <%= book.pages  %> </h3>
       <h3> <span class="title"> Tags:</span> <%= book.tags  %> </h3>
+
       <h3> <span class="title"> Created:</span> 
         <%= book.created ?
           typeof(book.created) === "object" ? book.created.toDateString() : book.created
@@ -38,10 +42,34 @@
         <button class="btn" type="submit">
           <a href="/books/<%= book._id %>/details">Details</a>
         </button>
-        <button class="btn" type="submit">
-          <a href="/">Home</a>
-        </button>
       </div>
+    </div>
+  
+    <!-- filter using foreach -->
+    <!-- <div class="book-cards">
+      <% book.author.books.forEach(book => { %>
+        <div class="card">
+          <p> <span class="title"> Title :</span> <%= book.title === "Intro to Nodejs" ? null : book.title %> </p>
+          <p> <span class="title"> Description :</span> <%= book.title === "Intro to Nodejs" ? null : book.description %> </p>
+          <p> <span class="title"> Pages :</span> <%= book.title === "Intro to Nodejs" ? null : book.pages %> </p>
+          <p> <span class="title"> Tags :</span> <%= book.title === "Intro to Nodejs" ? null : book.tags %> </p>
+        </div>
+      <% }) %>
+    </div> -->
+  
+  <!-- all books of the author -->
+    <div class="book-cards">
+      <% books = book.author.books.filter((book) => {
+        return book.title !== title
+      }) -%>
+      <% books.forEach(book => { %>
+      <div class="card">
+        <p> <span class="title"> Title :</span> <%= book.title %></p>
+        <p> <span class="title"> Description :</span> <%= book.description %></p>
+        <p> <span class="title"> Pages :</span> <%= book.pages %></p>
+        <p> <span class="title"> Tags :</span> <%= book.tags %></p>
+      </div>
+      <% }) %>
     </div>
   </body>
 </html>
