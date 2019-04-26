@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
+var session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 
 mongoose.connect("mongodb://localhost/bookList", { useNewUrlParser: true }, (err) => {
 	err ? console.log(err, 'not connected to mongodb') : console.log('Successfully connected to mongodb');
@@ -28,6 +30,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  store: new MongoStore({ mongooseConnection: mongoose.connection })
+  // cookie: { secure: true }
+}));
 
 app.use('/', indexRouter);
 app.use('/books', booksRouter);

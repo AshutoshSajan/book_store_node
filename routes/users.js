@@ -8,25 +8,20 @@ router.get('/login', function(req, res, next) {
 });
 
 router.post('/login', function(req, res, next) {
+	console.log(req.session, "session..............................")
 	const password = req.body.password;
 	User.findOne({email: req.body.email}, (err, user) => {
 			console.log(user, "user....................................");
-		if(err){
-			next(err);
-			return res.redirect('/users/login');
-		}else if(user == null){
-			res.redirect('/users/login');
-			return;
-		}else {
+		if(err) return res.status(500).redrect('/users/login');
+		if(!user) return res.status(400).send("User not found");
+		if(user){
 			const result = bcrypt.compareSync(password, user.password)
 			if(!result){
-				console.log(result, "password did not match");
-				res.redirect('/users/login');
-				return;
+				return res.status(400).send("Wrong password");
 			}else if(result){
 				console.log(result, "pasword match succesull");
-				res.redirect('/');
-				return;
+				req.session.userId = user._id;
+				return res.status(200).redirect('/');
 			};
 		}
 	})
@@ -43,5 +38,10 @@ router.post('/register', function(req, res, next) {
 		res.redirect('/');
 	})
 });
+
+router.get('/logout', function(req, res, next) {
+	req.session.destroy();
+	res.redirect('/users/login');
+})
 
 module.exports = router;
