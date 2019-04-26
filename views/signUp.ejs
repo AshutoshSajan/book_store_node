@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Add Authors</title>
+	<title>SignUp</title>
 	<link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
@@ -19,13 +19,13 @@
 	  	</ul>
   	</nav>
 	</header>
-
-	<form action="/authors" method="POST" class="form">
-		<input type="text" name="name" placeholder="Name" />
-		<textarea type="text" rows="8" name="description" placeholder="description"></textarea>
-		<input type="Number" name="age" placeholder="Age" />
-		<input type="email" name="email" placeholder="Email"/>
-		<input id="sub-btn" type="submit" value="ADD AUTHOR" />	
+	
+	<form action="/users/register" method="POST" class="form">
+		<legend>Create new account</legend>
+		<input type="text" name="name" placeholder="Username" required />
+		<input type="email" name="email" placeholder="Email"required />
+		<input type="password" name="password" placeholder="Password" required />
+		<input id="sub-btn" type="submit" value="Login" />	
 	</form>
 </body>
 </html>

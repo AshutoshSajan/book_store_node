@@ -10,10 +10,13 @@ mongoose.connect("mongodb://localhost/bookList", { useNewUrlParser: true }, (err
 })
 var Author = require('./models/Author');
 var Book = require('./models/Book');
+var User = require('./models/User');
 
 var indexRouter = require('./routes/index');
 var booksRouter = require('./routes/books');
-var authorRouter = require('./routes/author');
+var authorRouter = require('./routes/authors');
+var userRouter = require('./routes/users');
+
 var app = express();
 
 // view engine setup
@@ -28,7 +31,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/books', booksRouter);
-app.use('/author', authorRouter);
+app.use('/authors', authorRouter);
+app.use('/users', userRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

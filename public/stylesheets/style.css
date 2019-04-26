@@ -1,7 +1,7 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background: #111;
+  background: #353533;
 }
 
 a {
@@ -17,7 +17,8 @@ header {
 
 .title {
 	font-size: 20px;
-	color: green;
+	color: #333;
+	font-style: italic;
 }
 
 .nav {
@@ -37,7 +38,8 @@ header h1 {
 
 .form input,
  textarea,
- select {
+ select,
+ legend {
 	display: block;
 	width: 500px;
 	font-size: 22px;
@@ -54,19 +56,17 @@ header h1 {
 
 .book-list {
 	display: flex;
-	justify-content: center;
+	justify-content: flex-start;
 	list-style: none; 
 	flex-wrap: wrap;
-	align-items: center;
-	/*margin: 0 auto;*/
+	margin: 0 auto;
 }
 
 .card {
 	border-radius: 5px;
 	display: block;
-	box-shadow: 0 2px 20px 4px rgba(255,255,255,0.170);
 	padding: 20px 40px;
-	background-color: #000;
+	background-color: #F3F7F6;
 	margin: 20px;
 	width: 300px;
 	word-break: break-word;
@@ -81,7 +81,7 @@ header h1 {
 }
 
 h3 {
-	color: #f3f3f3;
+	color: #5c5c5c;
 	font-style: italic;
 }
 
@@ -96,46 +96,17 @@ h3 {
 }
 
 .card p {
-	color: #fff;
+	color: #5c5c5c;
 }
 
-/*sudo elements and hover effect on them*/
-/*.sudo {
+legend {
+	background: #111;
+	border-radius: 0;
+	margin:0 auto;
 	color: #fff;
-	background-color: red;
-	transition: all 500ms ease-out;
+	text-transform: uppercase; 
 }
 
-.sudo::before { 
-	content: "created using css pseudo elements";
-	color: black;
-	background-color: green;
-	padding: 4px 10px;
-	transition: all 500ms ease-out;
- }
-
- .sudo:hover:after{
- 	color: white;
- 	font-size: 22px;
- 	background-color: black;
- 	cursor: pointer;
- }
-
- .sudo::after { 
-	content: "created using css pseudo elements" ;
-	color: black;
-	background-color: green;
-	padding: 4px 10px;
-	transition: all 500ms ease-out;
- }
-
- .sudo:hover:before{
- 	color: white;
- 	font-size: 22px;
- 	background-color: black;
- 	cursor: pointer;
- }*/
-
-
-
-
+.author-books .card {
+	justify-content: flex-start;
+}

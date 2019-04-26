@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Book = require('../models/Book');
 var Author = require('../models/Author');
-var url = require("url");
 
 router.get('/', function (req, res, next) {
 	res.render("author");
@@ -11,29 +9,35 @@ router.get('/', function (req, res, next) {
 router.post('/', function (req, res, next) {
 		var data = req.body;
 		Author.create(data, (err, author) => {
-		err ? next(err) : console.log(author);
+		if (err) return next(err);
 		res.redirect('/');
 	})
 })
 
-router.get('/showAuthors', function (req, res, next) {
+router.get('/show-authors', function (req, res, next) {
 	Author.find({}, (err, authors) => {
-		err ? next(err) : console.log(authors);
+		if (err) return next(err);
 		res.render("showAuthors", { authors });
 	})
 })
 
 router.get('/:id/books', function (req, res, next) {
-	console.log(req.url, "url books");
 	var id = req.params.id;
-	console.log(id, "id in author books..............................")
 	Author
 	.findOne({_id: id})
 	.populate("books")
 	.exec((err, author) => {
-		err ? next(err) : console.log(author, "inside author-books.....................");
+		if(err) return next(err);
 		res.render("author_books", { author: author });
 	})
 })
+ 
+router.get('/:id/delete', function (req, res, next) {
+	var id = req.params.id;
+	Author.findByIdAndDelete({_id:id}, (err, authors) => {
+		if (err) return next(err);
+		res.render("showAuthors", { authors });
+	})
+})      
 
 module.exports = router;

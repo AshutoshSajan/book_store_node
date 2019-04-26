@@ -11,8 +11,10 @@
         <ul class="nav">
           <li><h1><a href="/">Home</a></h1></li>
           <li><h1><a href="/books">Add Books</a></h1></li>
-          <li><h1><a href="/author">Add Author</a></h1></li>
-          <li><h1><a href="/author/showAuthors">Authors</a></h1></li>
+          <li><h1><a href="/authors">Add Author</a></h1></li>
+          <li><h1><a href="/authors/show-authors">Authors</a></h1></li>
+          <li><h1><a href="/users/login">SignIn</a></h1></li>
+          <li><h1><a href="/users/register">SignUp</a></h1></li>
         </ul>
       </nav>
     </header>
@@ -29,20 +31,20 @@
           <h3> <span class="title"> No Of Books:</span> <%= author.books.length  %> </h3>
           <h3> 
             <span class="title"> Books:</span> 
-            <a href="/author/<%= author._id %>/books" > All Books </a>
+            <a href="/authors/<%= author._id %>/books" > All Books </a>
           </h3>
 
-          <!-- <div>
+          <div>
             <button class="btn" type="submit">
-              <a href="/books/<%= "book._id" %>/delete"> Delete</a>
+              <a href="/authors/<%= author._id %>/delete"> Delete</a>
             </button>
-            <button class="btn" type="submit">
-              <a href="/books/<%= "book._id" %>/update">Edit</a>
-            </button>
-            <button class="btn" type="submit">
-              <a href="/books/<%= "book._id" %>/details">Details</a>
-            </button>
-          </div> -->
+            <!-- <button class="btn" type="submit">
+              <a href="/authors/<%= author._id %>/update">Edit</a>
+            </button> -->
+            <!-- <button class="btn" type="submit">
+              <a href="/authors/<%= author._id %>/details">Details</a>
+            </button> -->
+          </div>
         </div>
       <% }) %>
     </div>
