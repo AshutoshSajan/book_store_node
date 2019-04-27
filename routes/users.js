@@ -8,7 +8,7 @@ router.get('/login', function(req, res, next) {
 });
 
 router.post('/login', function(req, res, next) {
-	console.log(req.session, "session..............................")
+	console.log(req.session, "session in user..............................")
 	const password = req.body.password;
 	User.findOne({email: req.body.email}, (err, user) => {
 			console.log(user, "user....................................");

@@ -1,0 +1,62 @@
+var Book = require('../models/Book');
+var Author = require('../models/Author');
+var id;
+
+module.exports = {
+
+	book_Form:  function(req, res, next) {
+		Author.find({}, 'name', (err, authors) => {
+			if(err) return next(err);
+	  	res.render('form', {authors: authors});
+		})
+	},
+
+	add_Book: function(req, res, next) {
+		if(req.body.title) {
+			Book.create(req.body, (err, book) => {
+				if(err) return next(err);
+				Author.findByIdAndUpdate(book.author, {$push: {books: book._id}}, {new: true}, (err, author) => {
+					if(err) return next(err);
+					res.redirect('/');
+				})
+			})
+		} else res.redirect('/');
+	},
+
+	edit_Book: function(req, res, next) {
+		id = req.params.id;
+		Book.findOne({_id: id}, (err, book) => {
+			if(err) return next(err);
+			res.render("update", {book: book});
+		})
+	},
+
+	update_Book: function(req, res, next) {
+		Book.findOneAndUpdate({_id: id}, req.body, (err, book) => {
+			if(err) return next(err);
+			res.redirect("/");
+		})
+	},
+
+	book_Details: function(req, res, next) {
+		Book
+		.findOne({_id: req.params.id})
+		.populate({
+			path: 'author',
+			populate: [{
+				path: 'books',
+				model: 'Book',
+			}]
+		})
+		.exec((err, book) => {
+			if(err) return next(err)
+			res.render('details', { book: book })
+		})
+	},
+
+	delete_Book: function(req, res, next) {
+		Book.findByIdAndDelete({_id: req.params.id}, (err, book) => {
+			if(err) return next(err);
+			res.redirect("/");
+	})}
+}
