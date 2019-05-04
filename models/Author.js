@@ -6,13 +6,19 @@ var authorSchema = new Schema ({
 		type: String,
 		required: true
 	},
-	description: String,
-	email: String,
-	age: Number,
+	email: {
+		type: String,
+		required: true,
+		unique: true
+	},
 	books: [{
 		type: Schema.Types.ObjectId,
 		ref: 'Book'
-	}]
+	}],
+	image: {
+		type: String,
+		default: "../public/images/user.png"
+	}
 })
 
 var Author = mongoose.model('Author', authorSchema);

@@ -5,21 +5,15 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <header>
-      <h1>Book Store</h1>
-      <nav>
-        <ul class="nav">
-          <li><h1><a href="/">Home</a></h1></li>
-          <li><h1><a href="/books">Add Books</a></h1></li>
-          <li><h1><a href="/authors">Add Author</a></h1></li>
-          <li><h1><a href="/authors/show-authors">Authors</a></h1></li>
-          <li><h1><a href="/users/login">SignIn</a></h1></li>
-          <li><h1><a href="/users/register">SignUp</a></h1></li>
-          <li><h1><a href="/users/logout">Logout</a></h1></li>
-        </ul>
-      </nav>
-    </header>
-
+    <!-- header imported -->
+    <%if(author){%>
+      <% include partials/authorHeader %>
+    <% }else { %>
+      <% include partials/userHeader %>
+    <% } %>
+    
+    <% include partials/cart %>
+    
     <% title = book.title -%>
 
     <div class="card book-details">
@@ -28,6 +22,7 @@
       <h3> <span class="title"> Description:</span> <%= book.description  %> </h3>
       <h3> <span class="title"> Pages:</span> <%= book.pages  %> </h3>
       <h3> <span class="title"> Tags:</span> <%= book.tags  %> </h3>
+      <h3> <span class="title"> Price:</span> <%= book.price  %> </h3>
 
       <h3> <span class="title"> Created:</span> 
         <%= book.created ?
@@ -35,19 +30,21 @@
           : "no date available" %>
       </h3>
       
-      <div>
-        <button class="btn" type="submit">
-          <a href="/books/<%= book._id %>/delete"> Delete</a>
-        </button>
-        <button class="btn" type="submit">
-          <a href="/books/<%= book._id %>/edit">Edit</a>
-        </button>
-        <button class="btn" type="submit">
-          <a href="/books/<%= book._id %>/details">Details</a>
-        </button>
-      </div>
+      <% if(user){%>
+        <div>
+          <button class="btn" type="submit">
+            <a href="/books/<%= book._id %>/delete"> Delete</a>
+          </button>
+          <button class="btn" type="submit">
+            <a href="/books/<%= book._id %>/edit">Edit</a>
+          </button>
+          <button class="btn" type="submit">
+            <a href="/books/<%= book._id %>/details">Details</a>
+          </button>
+        </div>
+      <% } %>
     </div>
-  
+
     <!-- filter using foreach -->
     <!-- <div class="book-cards">
       <% book.author.books.forEach(book => { %>
@@ -61,7 +58,7 @@
     </div> -->
   
   <!-- all books of the author -->
-    <div class="book-cards author-books">
+    <div class="book-list">
       <% books = book.author.books.filter((book) => {
         return book.title !== title
       }) -%>
@@ -71,8 +68,11 @@
         <p> <span class="title"> Description :</span> <%= book.description %></p>
         <p> <span class="title"> Pages :</span> <%= book.pages %></p>
         <p> <span class="title"> Tags :</span> <%= book.tags %></p>
+        <p> <span class="title"> Price:</span> <%= book.price  %> </p>
       </div>
       <% }) %>
     </div>
+
+    <% include partials/footer %>
   </body>
 </html>

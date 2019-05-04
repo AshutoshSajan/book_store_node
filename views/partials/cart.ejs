@@ -1,0 +1,36 @@
+<% item = products ? products.cartId.product.length: 00 -%>
+<section class="cart">
+	<input id="toggle" type="checkbox" name="toggle" />
+	<label class="label" for="toggle">
+		<i class="fas fa-bars"></i>
+		<span><%= item.toString().length < 2 ?  "0" + item : item %></span>
+	</label>
+
+	<nav class="nav-menu">
+
+		<%/* <span> products.cartId.product</span> */%>
+		
+		<ul>
+			<%/* products =  products ? products : "no data" */%>
+
+			<% if(products){ %>
+				<% products.cartId.product.forEach(product => { %>
+					<li>
+						<div class="book">
+							<p><span>Title :</span><%= product.bookId.title %></p>
+							<p><span>Price :</span><%= product.bookId.price %></p>
+							<p><span>Quantity :</span><%= product.quantity %></p>
+						</div>
+					</li>
+				<% }) %>
+			<% } %>
+
+			<%/* products.cartId.product.bookId.forEach(book => { %>
+				<p><%= products.cartId.product.bookId %></p>
+				<p><%= product.bookId.title %></p>
+			<% */%>
+			
+		</ul>
+	</nav>
+</section>
+	

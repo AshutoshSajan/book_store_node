@@ -5,20 +5,14 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <header>
-      <h1>Book Store</h1>
-      <nav>
-        <ul class="nav">
-          <li><h1><a href="/">Home</a></h1></li>
-          <li><h1><a href="/books">Add Books</a></h1></li>
-          <li><h1><a href="/authors">Add Author</a></h1></li>
-          <li><h1><a href="/authors/show-authors">Authors</a></h1></li>
-	  			<li><h1><a href="/users/login">SignIn</a></h1></li>
-	  			<li><h1><a href="/users/register">SignUp</a></h1></li>
-          <li><h1><a href="/users/logout">Logout</a></h1></li>
-        </ul>
-      </nav>
-    </header>
+    <!-- header imported -->
+    <%if(author){%>
+      <% include partials/authorHeader %>
+    <% }else { %>
+      <% include partials/userHeader %>
+    <% } %>
+    
+    <% include partials/cart %>
 
     <div class="book-list">
       <% author.books.forEach( book => { %>
@@ -27,20 +21,24 @@
       		<p> <span class="title"> Description :</span> <%= book.description %></p>
       		<p> <span class="title"> Pages :</span> <%= book.pages %></p>
       		<p> <span class="title"> Tags :</span> <%= book.tags %></p>
-          <div>
-            <button class="btn" type="submit">
-              <a href="/books/<%= book._id %>/delete"> Delete</a>
-            </button>
-            <button class="btn" type="submit">
-              <a href="/books/<%= book._id %>/edit">Edit</a>
-            </button>
-            <button class="btn" type="submit">
-              <a href="/books/<%= book._id %>/details">Details</a>
-            </button>
-          </div>
+          
+          <% if (user){%>
+            <div>
+              <button class="btn" type="submit">
+                <a href="/books/<%= book._id %>/delete"> Delete</a>
+              </button>
+              <button class="btn" type="submit">
+                <a href="/books/<%= book._id %>/edit">Edit</a>
+              </button>
+              <button class="btn" type="submit">
+                <a href="/books/<%= book._id %>/details">Details</a>
+              </button>
+            </div>
+          <% } %>
       	</div>
       <% }) %>
     </div>
-
+    
+    <% include partials/footer %>
   </body>
 </html>

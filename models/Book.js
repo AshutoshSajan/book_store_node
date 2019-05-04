@@ -8,7 +8,8 @@ var bookSchema = new Schema ({
 		required: true
 	},
 	description: {
-		type: String, required: true
+		type: String,
+		required: true
 	},
 	pages: {
 		type: Number,
@@ -16,17 +17,18 @@ var bookSchema = new Schema ({
 	},
 	author: {
 		type: Schema.Types.ObjectId,
-		ref: 'Author', required: true
+		ref: 'Author',
+		required: true
 	},
 	created: {
 		type: Date,
 		default: new Date()
 	},
-	time: {
-		type:String,
-	  default: new Date().toLocaleTimeString()
-	},
 	tags: [String],
+	price:{
+		type: String,
+		required: true
+	}
 })
 
 var Book = mongoose.model('Book', bookSchema);

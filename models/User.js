@@ -1,6 +1,9 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
+var multer  = require('multer')
+var upload = multer({ dest: 'uploads/' });
+
 const saltRounds = 10;
 const salt = bcrypt.genSaltSync(saltRounds);
 
@@ -21,6 +24,14 @@ var userSchema = new Schema ({
 		required: true,
 		minlength: 6,
 		maxlength: 16
+	},
+	avatar:{
+		data: Buffer,
+		contentType: String
+	},
+	cartId :{
+		type: Schema.Types.ObjectId,
+		ref: 'Cart'
 	}
 })
 

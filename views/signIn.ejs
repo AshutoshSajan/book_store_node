@@ -6,27 +6,23 @@
 	<link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
-	<header>
-		<h1>Book Store</h1>
-		<nav>
-	  	<ul class="nav">
-	  		<li><h1><a href="/">Home</a></h1></li>
-	  		<li><h1><a href="/books">Add Books</a></h1></li>
-	  		<li><h1><a href="/authors">Add Author</a></h1></li>
-	  		<li><h1><a href="/authors/show-authors">Authors</a></h1></li>
-	  		<li><h1><a href="/users/login">SignIn</a></h1></li>
-	  		<li><h1><a href="/users/register">SignUp</a></h1></li>
-	  		<li><h1><a href="/users/logout">Logout</a></h1></li>
-	  	</ul>
-  	</nav>
-	</header>
-	
-	<form action="/users/login" method="POST" class="form">
+	<!-- header imported -->
+  <%if(author){%>
+    <% include partials/authorHeader %>
+  <% }else { %>
+    <% include partials/userHeader %>
+  <% } %>
+
+	<p class="err"><%= error ? error : "" %></p>
+
+	<form action="/users/login" method="POST" class="form" >
 		<legend>login to your account</legend>
-		<input type="text" name="name" placeholder="Username" required />
-		<input type="email" name="email" placeholder="Email"required />
+		<%/* <input type="text" name="name" placeholder="Username" required /> */%>
+		<input type="email" name="email" placeholder="Email" required />
 		<input type="password" name="password" placeholder="Password" required />
 		<input id="sub-btn" type="submit" value="Login" />	
 	</form>
+
+  <% include partials/footer %>
 </body>
 </html>

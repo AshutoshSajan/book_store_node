@@ -6,32 +6,35 @@
 	<link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
-	<header>
-		<h1>Book Store</h1>
-		<nav>
-  	<ul class="nav">
-  		<li><h1><a href="/">Home</a></h1></li>
-  		<li><h1><a href="/books">Add Books</a></h1></li>
-	  	<li><h1><a href="/authors">Add Author</a></h1></li>
-	  	<li><h1><a href="/authors/show-authors">Authors</a></h1></li>
-	  	<li><h1><a href="/users/login">SignIn</a></h1></li>
-	  	<li><h1><a href="/users/register">SignUp</a></h1></li>
-	  	<li><h1><a href="/users/logout">Logout</a></h1></li>
-  	</ul>
-	</header>
+	<!-- header imported -->
+  <%if(author){%>
+    <% include partials/authorHeader %>
+  <% }else { %>
+    <% include partials/userHeader %>
+  <% } %>
+	
+  <% include partials/cart %>
 
-	<form action="/books/:id/update-book" method="POST" class="form">
+	<%/* %>
+	<% include partials/form %> 
+	<% */%>
+
+	<form action="/books/:id/update" method="POST" class="form">
 		<input type="text" name="title" placeholder="Book title" value="<%= book.title%>" />
 		<textarea type="text" rows="8" name="description" >
 			<%= book.description %>
 		</textarea>
 		<input type="Number" name="pages" placeholder="Likes" value="<%= book.pages%>"/>
-		<input type="text" value="<%= book.created.toLocaleDateString() %>"/>
-		<input type="date" name="created" 
-		value="<%= book.created.toLocaleDateString().split('/').sort((a,b)=> a - b ).join("/") %>" />
+		<%/* %>
+		 <input type="date" name="created" /> 
+		<% */%>
 		<input type="text" name="tags" placeholder="Tags" value="<%= book.tags%>"/>
+		<%/* %>
 		<input type="text" name="author" placeholder="Author name" value="<%= book.author%>"/>
+		<% */%>
 		<input id="sub-btn" type="submit" value="Update"/>	
 	</form>
+
+  <% include partials/footer %>
 </body>
 </html>

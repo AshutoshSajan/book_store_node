@@ -1,3 +1,4 @@
+// all dependencies packages
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -5,19 +6,35 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 var session = require('express-session');
-const MongoStore = require('connect-mongo')(session);
-
-mongoose.connect("mongodb://localhost/bookList", { useNewUrlParser: true }, (err) => {
-	err ? console.log(err, 'not connected to mongodb') : console.log('Successfully connected to mongodb');
-})
-var Author = require('./models/Author');
-var Book = require('./models/Book');
-var User = require('./models/User');
+var MongoStore = require('connect-mongo')(session);
+var authController = require('./controllers/authController');
+var flash = require('connect-flash');
+var passport = require('passport');
 
 var indexRouter = require('./routes/index');
 var booksRouter = require('./routes/books');
 var authorRouter = require('./routes/authors');
 var userRouter = require('./routes/users');
+var cartRouter = require('./routes/cart')
+var authRouter = require('./routes/auth');
+
+// mongoose connect with mongodb database
+mongoose.connect("mongodb://localhost/bookList", { useNewUrlParser: true }, (err) => {
+	err ? console.log(err, 'not connected to mongodb') : console.log('Successfully connected to mongodb');
+})
+
+//passport require
+require('./module/passport');
+
+// database models
+require('./models/Author');
+require('./models/Book');
+require('./models/User');
+require('./models/Cart');
+require('./models/Product');
+
+
+// router files
 
 var app = express();
 
@@ -37,11 +54,20 @@ app.use(session({
   store: new MongoStore({ mongooseConnection: mongoose.connection })
   // cookie: { secure: true }
 }));
+app.use(passport.initialize());
+app.use(passport.session());
 
-app.use('/', indexRouter);
+app.use(flash());
+app.use(authController.sessions);
+app.use(authController.googleSessions);
+
 app.use('/books', booksRouter);
 app.use('/authors', authorRouter);
 app.use('/users', userRouter);
+app.use('/auth', authRouter);
+app.use('/', indexRouter);
+app.use('/cart', cartRouter);
+// app.use('/product', cartRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

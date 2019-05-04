@@ -6,27 +6,22 @@
 	<link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
-	<header>
-		<h1>Book Store</h1>
-		<nav>
-	  	<ul class="nav">
-	  		<li><h1><a href="/">Home</a></h1></li>
-	  		<li><h1><a href="/books">Add Books</a></h1></li>
-	  		<li><h1><a href="/authors">Add Author</a></h1></li>
-	  		<li><h1><a href="/authors/show-authors">Authors</a></h1></li>
-	  		<li><h1><a href="/users/login">SignIn</a></h1></li>
-	  		<li><h1><a href="/users/register">SignUp</a></h1></li>
-	  		<li><h1><a href="/users/logout">Logout</a></h1></li>
-	  	</ul>
-  	</nav>
-	</header>
+	<!-- header imported -->
+  <%if(author){%>
+    <% include partials/authorHeader %>
+  <% }else { %>
+    <% include partials/userHeader %>
+  <% } %>
 	
 	<form action="/users/register" method="POST" class="form">
 		<legend>Create new account</legend>
 		<input type="text" name="name" placeholder="Username" required />
 		<input type="email" name="email" placeholder="Email"required />
 		<input type="password" name="password" placeholder="Password" required />
-		<input id="sub-btn" type="submit" value="Login" />	
+		<%/*<input type="file" name="avatar" placeholder="Image" required /> */%>
+		<input id="sub-btn" type="submit" value="Submit" />
 	</form>
+
+  <% include partials/footer %>
 </body>
 </html>

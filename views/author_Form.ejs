@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Add Authors</title>
+	<link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+	<!-- header -->
+	<!-- header imported -->
+  <%if(author){%>
+    <% include partials/authorHeader %>
+  <% }else { %>
+    <% include partials/userHeader %>
+  <% } %>
+   
+  <% include partials/cart %>
+
+	<% include partials/author-form %>
+  <% include partials/footer %>
+</body>
+</html>

@@ -1,9 +1,8 @@
 var Book = require('../models/Book');
 var Author = require('../models/Author');
-var id;
 
 module.exports = {
-
+	id: "",
 	book_Form:  function(req, res, next) {
 		Author.find({}, 'name', (err, authors) => {
 			if(err) return next(err);
@@ -24,15 +23,22 @@ module.exports = {
 	},
 
 	edit_Book: function(req, res, next) {
-		id = req.params.id;
+		this.id = req.params.id;
 		Book.findOne({_id: id}, (err, book) => {
-			if(err) return next(err);
-			res.render("update", {book: book});
+			if(err) { return next(err) };
+			if(req.author._id.equals(book.author)){
+				console.log(req.author._id, "req author id", book.author, "book author", book, "book...")
+				res.render("update", {book: book});
+			}else{
+				req.flash("err", "You are not authorized to edit this book.");
+				console.log("err", "You are not authorized to edit this book.");
+				res.status(401).redirect('/');
+			}
 		})
 	},
 
 	update_Book: function(req, res, next) {
-		Book.findOneAndUpdate({_id: id}, req.body, (err, book) => {
+		Book.findOneAndUpdate({_id: this.id}, req.body, (err, book) => {
 			if(err) return next(err);
 			res.redirect("/");
 		})
@@ -55,8 +61,17 @@ module.exports = {
 	},
 
 	delete_Book: function(req, res, next) {
-		Book.findByIdAndDelete({_id: req.params.id}, (err, book) => {
-			if(err) return next(err);
-			res.redirect("/");
-	})}
+		Book.findOne({_id: req.params.id}, (err, book)=> {
+			if(err) {return next(err)};
+			if(req.author._id.equals(book.author)){
+				Book.findByIdAndDelete({_id: req.params.id}, (err, book) => {
+					if(err) { return next(err) };
+					res.redirect("/");
+				})
+			}else {
+				req.flash("err", "You are not authorized to delete this book");
+				res.status(401).redirect('/');
+			}
+		})
+	}
 }
