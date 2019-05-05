@@ -2,10 +2,12 @@ var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var Author = require('../models/Author');
 
+var keys = require('../keys');
+
 passport.use(new GoogleStrategy({
-    clientID: "117166578799-tv2losqr33p1q65nl52j62vtpl6p0tjc.apps.googleusercontent.com",
-    clientSecret: "a7PSYKuHZBqamIzxggQxMPq3",
-    callbackURL: "/auth/google/callback"
+  keys.clientID: "117166578799-tv2losqr33p1q65nl52j62vtpl6p0tjc.apps.googleusercontent.com",
+  keys.clientSecret: "a7PSYKuHZBqamIzxggQxMPq3",
+  callbackURL: "/auth/google/callback"
   },
   function(accessToken, refreshToken, profile, done) {
     console.log(profile.email);
