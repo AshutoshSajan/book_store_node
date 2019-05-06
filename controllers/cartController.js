@@ -26,21 +26,6 @@ module.exports = {
 		// })
 	},
 
-	// add_Items: function(req, res, next) {
-	// 	// console.log( req.user, "req.user.................");
-	// 	// console.log(req.body, "cart body...........................")
-	// 	// var id = req.author._id
-	// 	var data = req.body;
-	// 	Product.create(data, (err, item) => {
-	// 		if(err) return next(err);
-	// 		console.log(item, "product item inside cart.......................")
-	// 		Cart.findByIdAndUpdate({_id: req.user.cartId}, {$push: {product: item._id}}, {new: true}, (err, cart) => {
-	// 			console.log( "book added into the cart.................");
-	// 			res.status(200).redirect('/');
-	// 		})
-	// 	})
-	// },
-
 	add_Items: function(req, res, next) {
 		// console.log( req.user, "req.user.................");
 		// console.log(req.body, "cart body...........................")
@@ -74,59 +59,39 @@ module.exports = {
 
 	},
 
-	// add_Items: function(req, res, next) {
-	// 	// console.log( req.user, "req.user.................");
-	// 	console.log(req.body, "cart body...........................")
-	// 	// var id = req.author._id
-	// 	var data = req.body;
-	// 	// Product.create(data, (err, item) => {
-	// 	// 	if(err) return next(err);
-	// 	// 	console.log(item, "product item inside cart.......................")
-	// 		Cart
-	// 		.find()
-	// 		.populate([{
-	// 				path: 'product',
-	// 				model: 'Product'
-	// 			}])
-	//     .exec((err, product) => {
-	// 			if (err) return next(err);
-	// 			product.forEach(v => {
-	// 				// console.log(v, "v...................");
-	// 				v.product.forEach(val => {
-	// 					// console.log(val, "val...........................")
-	// 					if(val.bookId.equals(req.body.bookId)){
-	// 						const id = val._id;
-	// 						// console.log("yup.............");
-	// 						Product
-	// 						.findOneAndUpdate(
-	// 							{_id: id }, 
-	// 							{$inc: {quantity: req.body.quantity} },
-	// 							 (err, quantity) => {
-	// 							 	console.log(quantity,'quantity..........................')
-	// 							if(err) return next(err);
-	// 							// console.log(quantity, "quantity....................")
-	// 							// res.json(quantity)
-	// 							res.redirect('/');
-	// 						})
-	// 					}
-	// 				});
-	// 			});
-	//       // console.log(product, 'pop, products.............................');
-	//     })
-	// 	// })
-	// },
-
-	//{$push: {product: item._id}},
-	// 			{new: true}, (err, cart) => {
-	// 			console.log( "book added into the cart.................");
-	// 			res.status(200).redirect('/');
-
-	edit_Items: function(req, res, next) {
-		console.log("edit cart item")
-
+	edit_Item: function(req, res, next){
+		console.log("edit cart item...................")
+		var id = req.params.id;
+		console.log(id, "id.........................")
+		Product.findOne({_id: id}, (err, item) => {
+			if(err) return next(err);
+			console.log(item, 'edit item..................................');
+			res.locals.item = item;
+			res.status(200).redirect('/');
+		})
+		console.log("remove cart item")
 	},
 
-	remove_Items: function(req, res, next) {
+	update_Item: function(req, res, next){
+		console.log("cart updated....................");
+		// var id = req.params.id;
+		// console.log(id, "id.........................")
+		// Product.findOne({_id: id, (err, item) => {
+		// 	if(err) return next(err);
+		// 	console.log(item, 'item removed');
+		// 	res.status(200).render('index');
+		// })
+		// console.log("remove cart item")
+	},
+
+	remove_Item: function(req, res, next) {
+		var id = req.params.id;
+		console.log(id, "id.........................")
+		Product.findByIdAndDelete({_id: id}, (err, item) => {
+			if(err) return next(err);
+			console.log(item, 'item removed');
+			res.redirect('/')
+		})
 		console.log("remove cart item")
 	},
 

@@ -17,7 +17,7 @@ var authorRouter = require('./routes/authors');
 var userRouter = require('./routes/users');
 var cartRouter = require('./routes/cart')
 var authRouter = require('./routes/auth');
-var apiRouter = require('./routes/api');
+var apiRouter = require('./routes/api/books');
 
 
 // mongoose connect with mongodb database
@@ -68,7 +68,7 @@ app.use('/authors', authorRouter);
 app.use('/users', userRouter);
 app.use('/auth', authRouter);
 app.use('/cart', cartRouter);
-app.use('/api', apiRouter);
+app.use('/api/v1', apiRouter);
 app.use('/', indexRouter);
 
 // app.use('/product', cartRouter);

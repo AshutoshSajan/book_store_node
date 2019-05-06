@@ -11,34 +11,32 @@ module.exports = {
 			res.json(books);
 		})
 	},
-	single_Book:function(req,res,next) {
-		Book.findOne({title: req.params.name}, (err, books) => {
+	create_Book:function(req,res,next) {
+		Book.create(req.body, (err, book) => {
+			if(err) return next(err);
+			console.log(book,"api create book...................")
+			res.json(book);
+		})
+	},
+	get_Book:function(req,res,next) {
+		Book.findOne({_id: req.params.id}, (err, books) => {
 			if(err) return next(err);
 			res.json(books);
 		})
 	},
-	authors:function(req,res,next) {
-		Author.find({}, (err, authors) => {
+	update_Book:function(req,res,next) {
+		// console.log("api put.........................")
+		Book.findByIdAndUpdate({_id: req.params.id},
+		req.body, (err, authors) => {
 			if(err) return next(err);
 			res.json(authors);
 		})
 	},
-	single_Author:function(req,res,next) {
-		Author.findOne({name: req.params.name}, (err, author) => {
+	delete_Book:function(req,res,next) {
+		console.log("api delete.........................")
+		Book.findOneAndDelete({_id: req.params.id}, (err, author) => {
 			if(err) return next(err);
 			res.json(author);
 		})
 	},
-	users:function(req,res,next) {
-		User.find({}, (err, users) => {
-			if(err) return next(err);
-			res.json(users);
-		})
-	},
-	single_User:function(req,res,next) {
-		User.findOne({name: req.params.name}, (err, user) => {
-			if(err) return next(err);
-			res.json(user);
-		})
-	}
 }
