@@ -17,6 +17,8 @@ var authorRouter = require('./routes/authors');
 var userRouter = require('./routes/users');
 var cartRouter = require('./routes/cart')
 var authRouter = require('./routes/auth');
+var apiRouter = require('./routes/api');
+
 
 // mongoose connect with mongodb database
 mongoose.connect("mongodb://localhost/bookList", { useNewUrlParser: true }, (err) => {
@@ -65,8 +67,10 @@ app.use('/books', booksRouter);
 app.use('/authors', authorRouter);
 app.use('/users', userRouter);
 app.use('/auth', authRouter);
-app.use('/', indexRouter);
 app.use('/cart', cartRouter);
+app.use('/api', apiRouter);
+app.use('/', indexRouter);
+
 // app.use('/product', cartRouter);
 
 // catch 404 and forward to error handler

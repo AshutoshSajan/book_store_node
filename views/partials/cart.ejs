@@ -15,12 +15,14 @@
 
 			<% if(products){ %>
 				<% products.cartId.product.forEach(product => { %>
-					<li>
+					<li class="cart-items">
 						<div class="book">
 							<p><span>Title :</span><%= product.bookId.title %></p>
 							<p><span>Price :</span><%= product.bookId.price %></p>
 							<p><span>Quantity :</span><%= product.quantity %></p>
 						</div>
+
+						<button class="buy-btn">Buy now</button>
 					</li>
 				<% }) %>
 			<% } %>

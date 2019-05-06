@@ -51,20 +51,15 @@ table {
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background: #111;
-  width: 100vw;
-  max-width: 100vw;
   overflow-x: hidden;
 }
 
 .main {
 	display: flex;
-	width: 100vw;
-	max-width: 100vw;
 }
 
 .main .body {
 	width: 100vw;
-	max-width: 100vw;
 }
 
 a {
@@ -379,35 +374,31 @@ legend {
 
 .nav-menu {
 	width: 0;
-	padding: 0;
+	padding-top: 40px;
+	padding-bottom: 40px;
 	overflow: auto;
 	height: 90vh;
-	/*display: none;*/
 	visibility: hidden;
-	/*background: red;*/
-	/*display: none;*/
-	/*transform: translateX(-100%);*/
 	transition: all 200ms ease-out;
 }
 
 /*#toggle:hover .nav-menu {
 	transform: translateX(-100%);
-}
-*/
+}*/
+
 
 
 /*#toggle:checked .toggle {
 	transform: translateX(100%);
 }*/
 #toggle:checked +.label {
-	color: red;
 	transform: translateX(-100%);
 }
 
 #toggle:checked ~.nav-menu {
-	width: 300px;
-	padding: 40px 20px;
-	/*display: block;*/
+	width: 350px;
+	padding-left: 20px;
+	padding-right: 20px;
 	visibility: visible;
 	transform: translateX(0);
 }
@@ -422,5 +413,21 @@ legend {
 	width: 70px;
 	color: #f3f3f3;
 	word-wrap: break-word;
+}
+
+.cart-items {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.buy-btn {
+	border-radius: 3px;
+	background: #000;
+	color: #fff;
+	font-size: 18px;
+	border: 0;
+	outline: 0;
+	padding: 5px 10px;
 }
 

@@ -3,11 +3,10 @@ var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var Author = require('../models/Author');
 
 var keys = require('../keys');
-console.log(keys,"keys....................................")
 
 passport.use(new GoogleStrategy({
-    clientID: keys.keys.clientID,
-    clientSecret: keys.keys.clientSecret,
+    clientID: keys.clientID,
+    clientSecret: keys.clientSecret,
     callbackURL: "/auth/google/callback"
   },
   function(accessToken, refreshToken, profile, done) {
@@ -24,7 +23,7 @@ passport.use(new GoogleStrategy({
         return done(null, author);
       }
     	if(!author) {
-    		console.log(profile, "profile....................................")
+    		// console.log(profile, "profile....................................")
     		Author.create({
     			name: profile.displayName,
     			email: profile.emails[0].value,

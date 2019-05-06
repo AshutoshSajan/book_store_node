@@ -31,18 +31,18 @@ exports.sessions = (req, res, next) => {
 
 // ==================================================================
 
-// exports.isAuthorLoggedIn = (req, res, next) => {
-//   if (req.session && req.session.userId) {
-//     user.findById(req.session.userId, (err, user) => {
-//       if(err) return next(err);
-//       req.user = user;
-//       res.locals.user = user;
-//       next();
-//     })
-//   }else {
-//     res.redirect("/users/login");
-//   }
-// }
+exports.isAuthorLoggedIn = (req, res, next) => {
+  if (req.session.passport && req.session.passport.user) {
+    Author.findOne({ _id: req.session.passport.user }, (err, user) => {
+      if(err) return next(err);
+      req.author = user;
+      res.locals.author = user;
+      next();
+    })
+  }else {
+    res.redirect("/");
+  }
+}
 
 exports.googleSessions = (req, res, next) => {
   if (req.session.passport && req.session.passport.user) {
