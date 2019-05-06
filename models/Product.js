@@ -3,7 +3,8 @@ var Schema = mongoose.Schema;
 
 var productSchema = new Schema ({
 	bookId: {
-		type: String,
+		type: Schema.Types.ObjectId,
+		ref: 'Book',
 		required: true
 	},
 	quantity:{
@@ -11,7 +12,8 @@ var productSchema = new Schema ({
 		required: true
 	},
 	cartId:{
-		type: String,
+		type: Schema.Types.ObjectId,
+		ref: 'Cart',
 		required: true
 	},
 })

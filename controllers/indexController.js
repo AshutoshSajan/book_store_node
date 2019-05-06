@@ -3,8 +3,9 @@ var Book = require('../models/Book');
 
 module.exports = {
 	home: function(req, res, next) {
-		if(req.session && req.session.userId){
+		if((req.session && req.session.userId) || (req.session.passport && req.session.passport.user)){
 			const err = req.flash('err');
+			var id = req.user ? req.user._id : req.author ? req.author._id : null;
 			console.log(err, "index err msg");
 			Book
 			.find()
@@ -12,7 +13,7 @@ module.exports = {
 			.exec((err, books) => {
 				if(err) return next(err);
 
-				User.findOne({_id: req.user._id})
+				User.findOne({_id: id})
 			 .populate({
 					path: 'cartId',
 					populate: [{
@@ -29,7 +30,8 @@ module.exports = {
 					console.log(products, "product in index..................")
 					// req.user.products = products;
 					// res.render('partials/cart', {products});
-					res.render('index', { books, products });
+					res.locals.products = products
+					res.render('index', { books });
 				})
 
 				// res.render('index', { books: books });

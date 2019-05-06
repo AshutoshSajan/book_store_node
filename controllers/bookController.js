@@ -23,6 +23,7 @@ module.exports = {
 	},
 
 	edit_Book: function(req, res, next) {
+		console.log(req.author, req.user, "author and user id..................................");
 		this.id = req.params.id;
 		Book.findOne({_id: id}, (err, book) => {
 			if(err) { return next(err) };

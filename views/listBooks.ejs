@@ -6,55 +6,52 @@
   </head>
   <body>
     <!-- header imported -->
-    <%if(author){%>
-      <% include partials/authorHeader %>
-    <% }else { %>
-      <% include partials/userHeader %>
-    <% } %>
     
-    <% include partials/cart %>
-  
-    <!-- <p class="sudo" >hello</p> -->
+      <%if(author){%>
+        <% include partials/authorHeader %>
+      <% }else { %>
+        <% include partials/userHeader %>
+      <% } %>
+    
+      <div class="book-list">
+        <% books.forEach(book => { %>
+          <div class="card">
+            <h3> <span class="title"> Title :</span> <%= book.title  %> </h3>
+            <h3> <span class="title"> Author:</span> <%= author.name %> </h3>
+            <h3> <span class="title"> Description:</span> <%= book.description  %> </h3>
+            <h3> <span class="title"> Pages:</span> <%= book.pages  %> </h3>
+            <h3> <span class="title"> Tags:</span> <%= book.tags  %> </h3>
+            <h3> <span class="title"> Price:</span> <%= book.price  %> </h3>
 
-    <div class="book-list">
-      <% books.forEach(book => { %>
-        <div class="card">
-          <h3> <span class="title"> Title :</span> <%= book.title  %> </h3>
-          <h3> <span class="title"> Author:</span> <%= author.name %> </h3>
-          <h3> <span class="title"> Description:</span> <%= book.description  %> </h3>
-          <h3> <span class="title"> Pages:</span> <%= book.pages  %> </h3>
-          <h3> <span class="title"> Tags:</span> <%= book.tags  %> </h3>
-          <h3> <span class="title"> Price:</span> <%= book.price  %> </h3>
+            <%/* %>
+            <h3> <span class="title"> No Of Books:</span> <%= author.books.length %> </h3>
+            <% */%>
 
-          <%/* %>
-          <h3> <span class="title"> No Of Books:</span> <%= author.books.length %> </h3>
-          <% */%>
+            <%/* if(author){ %>
+              <h3> 
+                <span class="title"> Books:</span> 
+                <a href="/authors/<%= author._id %>/books" > All Books </a>
+              </h3>
+            <% } */%>
 
-          <%/* if(author){ %>
-            <h3> 
-              <span class="title"> Books:</span> 
-              <a href="/authors/<%= author._id %>/books" > All Books </a>
-            </h3>
-          <% } */%>
+            <% if(author){ %>
+              <div>
+                <button class="btn">
+                  <a href="/books/<%= book._id %>/details">Details</a>
+                </button>
+                <button class="btn" type="submit">
+                  <a href="/books/<%= book._id %>/edit">Edit</a>
+                </button>
+                <button class="btn" type="submit">
+                  <a href="/books/<%= book._id %>/delete"> Delete</a>
+                </button>
+              </div>
+            <% } %>
 
-          <% if(author){ %>
-            <div>
-              <button class="btn">
-                <a href="/books/<%= book._id %>/details">Details</a>
-              </button>
-              <button class="btn" type="submit">
-                <a href="/books/<%= book._id %>/edit">Edit</a>
-              </button>
-              <button class="btn" type="submit">
-                <a href="/books/<%= book._id %>/delete"> Delete</a>
-              </button>
-            </div>
-          <% } %>
-
-        </div>
-        
-      <% }) %>
-    </div>
+          </div>
+          
+        <% }) %>
+      </div>
     
     <% include partials/footer %>
   </body>

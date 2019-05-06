@@ -45,7 +45,7 @@ module.exports = {
 			};
 			Cart.create({userId: user._id}, (err, cart) =>{
 				if(err) return next(err);
-				User.findByIdAndUpdate({_id: user._id}, {$push: {cartId: cart._id}}, {new: true}, (err, user) => {
+				User.findByIdAndUpdate({_id: user._id}, {$set: {cartId: cart._id}}, {new: true}, (err, user) => {
 					console.log("registerd sucessfully.....................")
 					req.session.userId = user._id;
 					res.redirect('/');
