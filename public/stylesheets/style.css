@@ -431,3 +431,50 @@ legend {
 	padding: 5px 10px;
 }
 
+.cart-icon {
+	display: flex;
+	justify-content: space-between;
+	padding-bottom: 10px;
+}
+
+.cart-icon .fas{
+	font-size: 16px;
+}
+
+.edit-cart-form input{
+	width: 60px;
+	font-size: 12px;
+}
+
+.edit-cart-form .btn {
+	width: 64px;
+	margin-top: 4px; 
+}
+
+/*.bar {
+	height: 10px;
+	width: 100px;
+	display: inline-block;
+	background: red;
+	margin: 20px;
+}
+
+.bar::before {
+	content: "hello";
+	transform: translateX(-100%);
+	height: 10px;
+	width: 100px;
+	background: green;
+}
+
+.bar::after {
+	content: "hellowww";
+	transform: translateX(100%);
+	height: 10px;
+	width: 100px;
+	background: yellow;
+}
+
+.bar:hover {
+	transform: rotateZ(90deg);
+}*/

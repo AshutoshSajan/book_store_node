@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>edit cart</title>
+</head>
+<body>
+	<form action="/cart/<%= product._id %>/update-item" method="post" class="edit-cart-form">
+		<input type="hidden" placeholder="" name="id" value="<%= product._id %>"/>
+		<input type="number" placeholder="" name="quantity" value="<%= product.quantity %>"/>
+		<input type="hidden" placeholder="" name="bookId" value="<%= product.bookId._id %>"/>
+		<input type="hidden" placeholder="" name="cartId" value="<%= product.cartId %>"/>
+		<input class="btn" type="submit" value="Update" />
+	</form>
+</body>
+</html>

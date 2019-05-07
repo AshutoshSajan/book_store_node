@@ -1,12 +1,14 @@
 var User = require('../models/User');
 var Book = require('../models/Book');
+var Cart = require('../models/Cart');
 
 module.exports = {
 	home: function(req, res, next) {
-		if((req.session && req.session.userId) || (req.session.passport && req.session.passport.user)){
+		var user = req.user;
+		console.log(user, "req user........................")
+		var cartItem = req.flash("item");
 			const err = req.flash('err');
 			var id = req.user ? req.user._id : req.author ? req.author._id : null;
-			console.log(err, "index err msg");
 			Book
 			.find()
 			.populate('author', 'name')
@@ -27,15 +29,15 @@ module.exports = {
 				})
 			 .exec((err, products) => {
 					if(err) return next(err);
-					console.log(products, "product in index..................")
-					// req.user.products = products;
-					// res.render('partials/cart', {products});
-					res.locals.products = products
+					res.locals.products = products;
+					res.locals.cartItem = cartItem.length ? cartItem[0] : null;
+					// if(user){}
+					// Cart
+					// .findOne({_id: req.user.cartId}, (err, item) => {
+					// 	if(err) return next(err);
+					// })
 					res.render('index', { books });
 				})
-
-				// res.render('index', { books: books });
 			});	
-		}else return res.redirect('/users/login');
 	},
 }

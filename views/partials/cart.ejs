@@ -1,4 +1,6 @@
 <% item = products ? products.cartId.product.length: 00 -%>
+<%/* cartItem = cartItem ? cartItem: {} */%>
+
 <section class="cart">
 	<input id="toggle" type="checkbox" name="toggle" />
 	<label class="label" for="toggle">
@@ -8,29 +10,36 @@
 
 	<nav class="nav-menu">
 
-		<%/* <span> products.cartId.product</span> */%>
+		<%/* <span>products.cartId.product</span> */%>
 		
 		<ul>
 			<%/* products =  products ? products : "no data" */%>
 			<p><%/* = products.cartId.product */%></p>
-			<p><%= item ? item : " no item" %></p> 
 
 			<% if(products){ %>
 				<% products.cartId.product.forEach(product => { %>
 					<li class="cart-items">
 						<div class="book">
-							<div>
-								<button>
-									<a href="cart/<%= product._id %>/remove-item">delete</a>
-								</button>
-								<button>
-									<a href="cart/<%= product._id %>/edit-item">edit</a>
-								</button>
+							<div class="cart-icon">
+								<span>
+									<a href="cart/<%= product._id %>/edit-item">
+										<i class="fas fa-pencil-alt"></i>
+									</a>
+								</span>
+								<span>
+									<a href="cart/<%= product._id %>/remove-item">
+										<i class="fas fa-trash-alt"></i>
+									</a>
+								</span>
 							</div>
 
 							<p><span>Title :</span><%= product.bookId.title %></p>
 							<p><span>Price :</span><%= product.bookId.price %></p>
-							<p><span>Quantity :</span><%= product.quantity %></p>
+          		<% if(cartItem){ %>
+          			<% include editCart %>
+          		<% }else { %>
+								<p><span>Quantity :</span><%= product.quantity %></p>
+							<% } %>
 						</div>
 
 						<button class="buy-btn">Buy now</button>
@@ -46,4 +55,3 @@
 		</ul>
 	</nav>
 </section>
-	

@@ -58,17 +58,16 @@
                   <button class="btn"><a href="/books/<%= book._id %>/details">Details</a></button>
                 <% } */%>
 
-                <form class="buy-form" action="/cart/add-item" method="POST" >
+                <form class="buy-form" action="/cart" method="POST" >
                   <input class="quantity-btn" min="0" type="Number" placeholder="Quantity" name="quantity" required />
                   <input type="hidden" name="bookId" value="<%= book._id %>" />
                   <input type="hidden" name="cartId" value="<%= user ? user.cartId : null %>" />
                   <button class="btn">Add to cart</button>
                 </form>
-
               </div>
             </div>
-            
           <% }) %>
+            <span class="bar"></span>
         </div>
       </section>
 
@@ -77,6 +76,7 @@
       </aside>
 
     </main>
+
     <% include partials/footer %>
   </body>
 </html>
