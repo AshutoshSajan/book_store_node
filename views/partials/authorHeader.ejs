@@ -8,37 +8,37 @@
         </a>
       </li>
       <% if(author){ %>
-        <li>
-          <a href="/books">
-            <i class="fas fa-pen-square"></i>
-            <span class="menu-items" >Add Books</span>
-          </a>
-        </li>
-        
+      <li>
+        <a href="/books">
+          <i class="fas fa-pen-square"></i>
+          <span class="menu-items">Add Books</span>
+        </a>
+      </li>
 
-         <li>
-          <a href="/authors/books">
+
+      <li>
+        <a href="/authors/books">
           <i class="fas fa-user-edit"></i>
           <span class="menu-items"> Books </span>
-          </a>
-        </li>
+        </a>
+      </li>
 
-        <%/* <li><a href="/authors">Add Author</a></li> */%>
-        <li class="logout-sec">
-          <div class="img-cont">
-            <img class="image" src="<%= author ? author.image : "" %>" alt="" />
-            <p class="imgcap"> <%= author ? author.name : "" %> </p>
-          </div>
+      <%/* <li><a href="/authors">Add Author</a></li> */%>
+      <li class="logout-sec">
+        <div class="img-cont">
+          <img class="image" src="<%= author ? author.image : "" %>" alt="" />
+          <p class="imgcap"> <%= author ? author.name : "" %> </p>
+        </div>
 
-          <a href="/auth/logout">
-            <i class="fas fa-sign-out-alt"></i>
-            <span class="menu-items">Logout</span>
-          </a>
-        </li>
+        <a href="/auth/logout">
+          <i class="fas fa-sign-out-alt"></i>
+          <span class="menu-items">Logout</span>
+        </a>
+      </li>
       <%} else { %>
-        <li><a href="/authors/books">Authors</a></li>
-        <li><a href="/users/login">SignIn</a></li>
-        <li><a href="/users/register">SignUp</a></li>
+      <li><a href="/authors/books">Authors</a></li>
+      <li><a href="/users/login">SignIn</a></li>
+      <li><a href="/users/register">SignUp</a></li>
       <% } %>
     </ul>
   </nav>

@@ -1,82 +1,86 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Home</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-  </head>
-  <body>
-    <!-- header imported -->
-    <main class="main">
-      <section class="body">
-        <%if(author){%>
-          <% include partials/authorHeader %>
-        <% }else { %>
-          <% include partials/userHeader %>
-        <% } %>
-    
-        <%/* %>
-        <h3 class="err"><%= error ? error : "" %></h3> 
-        <% */%>
 
-        <div class="book-list">
-          <% books.forEach( book => { %>
-            <div class="card">
+<head>
+  <title>Home</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
 
-              <div class="card1" href="#">
-                <h3>
-                  <span class="title"> Title :</span>
-                  <span class="small"><%= book.title %></span>
-                </h3>
-                <h3>
-                  <span class="title"> Author :</span>
-                  <span class="small"><%= book.author ? book.author.name : "" %></span>
-                </h3>
-                <h3>
-                  <span class="title"> Price :</span>
-                  <span class="small"><%= book.price %></span>
-                </h3>
-                
-                 
-                <%/* <h3> %>
-                  <span class="title"> Description : </span>
-                  <span class="small">
-                    <%= book.description ? book.description.split(" ").slice(0,30).join(" ") : "description not available" %>
-                  </span>
-                </h3>
-                <% */%>
+<body>
+  <!-- header imported -->
+  <main class="main">
+    <section class="body">
+      <%if(author){%>
+      <% include partials/authorHeader %>
+      <% }else { %>
+      <% include partials/userHeader %>
+      <% } %>
 
-              </div>
+      <%/* %>
+      <h3 class="err"><%= error ? error : "" %></h3>
+      <% */%>
 
-              <div class="btn-container">
-                <button class="btn">
-                  <a href="/books/<%= book._id %>/details">Details</a>
-                </button>
-                <%/* if(author){ %>
-                  <button class="btn"><a href="/books/<%= book._id %>/delete"> Delete</a></button>
-                  <button class="btn"><a href="/books/<%= book._id %>/edit">Edit</a></button>
-                  <button class="btn"><a href="/books/<%= book._id %>/details">Details</a></button>
-                <% } */%>
+      <div class="book-list">
+        <% books.forEach( book => { %>
+        <div class="card">
 
-                <form class="buy-form" action="/cart" method="POST" >
-                  <input class="quantity-btn" min="0" type="Number" placeholder="Quantity" name="quantity" required />
-                  <input type="hidden" name="bookId" value="<%= book._id %>" />
-                  <input type="hidden" name="cartId" value="<%= user ? user.cartId : null %>" />
-                  <button class="btn">Add to cart</button>
-                </form>
-              </div>
-            </div>
-          <% }) %>
-            <span class="bar"></span>
+          <div class="card1" href="#">
+            <h3>
+              <span class="title"> Title :</span>
+              <span class="small"><%= book.title %></span>
+            </h3>
+            <h3>
+              <span class="title"> Author :</span>
+              <span class="small"><%= book.author ? book.author.name : "" %></span>
+            </h3>
+            <h3>
+              <span class="title"> Price :</span>
+              <span class="small"><%= book.price %></span>
+            </h3>
+
+
+            <%/* <h3> %>
+            <span class="title"> Description : </span>
+            <span class="small">
+              <%= book.description ? book.description.split(" ").slice(0,30).join(" ") : "description not available" %>
+            </span>
+            </h3>
+            <% */%>
+
+          </div>
+
+          <div class="btn-container">
+            <button class="btn">
+              <a href="/books/<%= book._id %>/details">Details</a>
+            </button>
+            <%/* if(author){ %>
+            <button class="btn"><a href="/books/<%= book._id %>/delete"> Delete</a></button>
+            <button class="btn"><a href="/books/<%= book._id %>/edit">Edit</a></button>
+            <button class="btn"><a href="/books/<%= book._id %>/details">Details</a></button>
+            <% } */%>
+
+            <form class="buy-form" action="/cart" method="POST">
+              <input class="quantity-btn" min="0" type="Number" placeholder="Quantity" name="quantity" required />
+              <input type="hidden" name="bookId" value="<%= book._id %>" />
+              <input type="hidden" name="cartId" value="<%= user ? user.cartId : null %>" />
+              <button class="btn">Add to cart</button>
+            </form>
+          </div>
         </div>
-      </section>
+        <% }) %>
+        <span class="bar"></span>
+      </div>
+    </section>
 
-      <aside class="aside">
-        <% include partials/cart %>
-      </aside>
+    <aside class="aside">
+      <% include partials/cart %>
+    </aside>
 
-    </main>
+  </main>
 
-    <% include partials/footer %>
-  </body>
+  <% include partials/footer %>
+</body>
+
 </html>

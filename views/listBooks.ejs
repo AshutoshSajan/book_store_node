@@ -1,58 +1,61 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Authors</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <!-- header imported -->
-    
-      <%if(author){%>
-        <% include partials/authorHeader %>
-      <% }else { %>
-        <% include partials/userHeader %>
-      <% } %>
-    
-      <div class="book-list">
-        <% books.forEach(book => { %>
-          <div class="card">
-            <h3> <span class="title"> Title :</span> <%= book.title  %> </h3>
-            <h3> <span class="title"> Author:</span> <%= author.name %> </h3>
-            <h3> <span class="title"> Description:</span> <%= book.description  %> </h3>
-            <h3> <span class="title"> Pages:</span> <%= book.pages  %> </h3>
-            <h3> <span class="title"> Tags:</span> <%= book.tags  %> </h3>
-            <h3> <span class="title"> Price:</span> <%= book.price  %> </h3>
 
-            <%/* %>
-            <h3> <span class="title"> No Of Books:</span> <%= author.books.length %> </h3>
-            <% */%>
+<head>
+  <title>Authors</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
 
-            <%/* if(author){ %>
-              <h3> 
-                <span class="title"> Books:</span> 
-                <a href="/authors/<%= author._id %>/books" > All Books </a>
-              </h3>
-            <% } */%>
+<body>
+  <!-- header imported -->
 
-            <% if(author){ %>
-              <div>
-                <button class="btn">
-                  <a href="/books/<%= book._id %>/details">Details</a>
-                </button>
-                <button class="btn" type="submit">
-                  <a href="/books/<%= book._id %>/edit">Edit</a>
-                </button>
-                <button class="btn" type="submit">
-                  <a href="/books/<%= book._id %>/delete"> Delete</a>
-                </button>
-              </div>
-            <% } %>
+  <%if(author){%>
+  <% include partials/authorHeader %>
+  <% }else { %>
+  <% include partials/userHeader %>
+  <% } %>
 
-          </div>
-          
-        <% }) %>
+  <div class="book-list">
+    <% books.forEach(book => { %>
+    <div class="card">
+      <h3> <span class="title"> Title :</span> <%= book.title  %> </h3>
+      <h3> <span class="title"> Author:</span> <%= author.name %> </h3>
+      <h3> <span class="title"> Description:</span> <%= book.description  %> </h3>
+      <h3> <span class="title"> Pages:</span> <%= book.pages  %> </h3>
+      <h3> <span class="title"> Tags:</span> <%= book.tags  %> </h3>
+      <h3> <span class="title"> Price:</span> <%= book.price  %> </h3>
+
+      <%/* %>
+      <h3> <span class="title"> No Of Books:</span> <%= author.books.length %> </h3>
+      <% */%>
+
+      <%/* if(author){ %>
+      <h3>
+        <span class="title"> Books:</span>
+        <a href="/authors/<%= author._id %>/books"> All Books </a>
+      </h3>
+      <% } */%>
+
+      <% if(author){ %>
+      <div>
+        <button class="btn">
+          <a href="/books/<%= book._id %>/details">Details</a>
+        </button>
+        <button class="btn" type="submit">
+          <a href="/books/<%= book._id %>/edit">Edit</a>
+        </button>
+        <button class="btn" type="submit">
+          <a href="/books/<%= book._id %>/delete"> Delete</a>
+        </button>
       </div>
-    
-    <% include partials/footer %>
-  </body>
+      <% } %>
+
+    </div>
+
+    <% }) %>
+  </div>
+
+  <% include partials/footer %>
+</body>
+
 </html>

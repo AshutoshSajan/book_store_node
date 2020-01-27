@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<title>Add Books</title>
 	<link rel="stylesheet" href="/stylesheets/style.css">
 </head>
+
 <body>
 	<!-- header imported -->
-  <%if(author){%>
-    <% include partials/authorHeader %>
-  <% }else { %>
-    <% include partials/userHeader %>
-  <% } %>
-  
+	<%if(author){%>
+	<% include partials/authorHeader %>
+	<% }else { %>
+	<% include partials/userHeader %>
+	<% } %>
+
 	<%/* %>
-	<% include partials/form %> 
+	<% include partials/form %>
 	<% */%>
-	
+
 	<form action="/books" method="POST" class="form">
 		<input type="text" name="title" placeholder="Book title" required />
 		<textarea type="text" rows="8" name="description" placeholder="description" required></textarea>
@@ -27,17 +29,18 @@
 		<input type="text" name="tags" placeholder="Tags" required />
 		<input type="Number" name="price" placeholder="Price" required />
 		<input type="hidden" name="author" value="<%= author._id %>" required />
-		
+
 		<%/* <select name="author" required > %>
-			<option> Select an author </option>
-			<% authors.forEach(author => { %>
-			  	<option value="<%= author._id %>"><%= author.name %></option>
-			<% }) %>
+		<option> Select an author </option>
+		<% authors.forEach(author => { %>
+		<option value="<%= author._id %>"><%= author.name %></option>
+		<% }) %>
 		<% </select> */%>
 
-		<input id="sub-btn" type="submit" value="ADD BOOK" />	
+		<input id="sub-btn" type="submit" value="ADD BOOK" />
 	</form>
 
-  <% include partials/footer %>
+	<% include partials/footer %>
 </body>
+
 </html>

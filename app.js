@@ -1,4 +1,5 @@
 // all dependencies packages
+require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -21,8 +22,10 @@ var apiRouter = require('./routes/api/api');
 
 
 // mongoose connect with mongodb database
-mongoose.connect("mongodb://localhost/bookList", { useNewUrlParser: true }, (err) => {
-	err ? console.log(err, 'not connected to mongodb') : console.log('Successfully connected to mongodb');
+mongoose.connect("mongodb://localhost/bookList", {
+  useNewUrlParser: true
+}, (err) => {
+  err ? console.log(err, 'not connected to mongodb') : console.log('Successfully connected to mongodb');
 })
 
 //passport require
@@ -46,14 +49,18 @@ app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: true,
-  store: new MongoStore({ mongooseConnection: mongoose.connection })
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection
+  })
   // cookie: { secure: true }
 }));
 app.use(passport.initialize());
@@ -74,12 +81,12 @@ app.use('/', indexRouter);
 // app.use('/product', cartRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

@@ -1,38 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<title>Books</title>
 	<link rel="stylesheet" href="/stylesheets/style.css">
 </head>
+
 <body>
 	<!-- header imported -->
-  <%if(author){%>
-    <% include partials/authorHeader %>
-  <% }else { %>
-    <% include partials/userHeader %>
-  <% } %>
+	<%if(author){%>
+	<% include partials/authorHeader %>
+	<% }else { %>
+	<% include partials/userHeader %>
+	<% } %>
 
 	<%/* %>
-	<% include partials/form %> 
+	<% include partials/form %>
 	<% */%>
 
 	<form action="/books/:id/update" method="POST" class="form">
 		<input type="text" name="title" placeholder="Book title" value="<%= book.title%>" />
-		<textarea type="text" rows="8" name="description" >
+		<textarea type="text" rows="8" name="description">
 			<%= book.description %>
 		</textarea>
-		<input type="Number" name="pages" placeholder="Likes" value="<%= book.pages%>"/>
+		<input type="Number" name="pages" placeholder="Likes" value="<%= book.pages%>" />
 		<%/* %>
-		 <input type="date" name="created" /> 
+		<input type="date" name="created" />
 		<% */%>
-		<input type="text" name="tags" placeholder="Tags" value="<%= book.tags%>"/>
+		<input type="text" name="tags" placeholder="Tags" value="<%= book.tags%>" />
 		<%/* %>
-		<input type="text" name="author" placeholder="Author name" value="<%= book.author%>"/>
+		<input type="text" name="author" placeholder="Author name" value="<%= book.author%>" />
 		<% */%>
-		<input id="sub-btn" type="submit" value="Update"/>	
+		<input id="sub-btn" type="submit" value="Update" />
 	</form>
 
-  <% include partials/footer %>
+	<% include partials/footer %>
 </body>
+
 </html>

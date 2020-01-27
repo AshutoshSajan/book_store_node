@@ -11,47 +11,47 @@
 	<nav class="nav-menu">
 
 		<%/* <span>products.cartId.product</span> */%>
-		
+
 		<ul>
 			<%/* products =  products ? products : "no data" */%>
 			<p><%/* = products.cartId.product */%></p>
 
 			<% if(products){ %>
-				<% products.cartId.product.forEach(product => { %>
-					<li class="cart-items">
-						<div class="book">
-							<div class="cart-icon">
-								<span>
-									<a href="cart/<%= product._id %>/edit-item">
-										<i class="fas fa-pencil-alt"></i>
-									</a>
-								</span>
-								<span>
-									<a href="cart/<%= product._id %>/remove-item">
-										<i class="fas fa-trash-alt"></i>
-									</a>
-								</span>
-							</div>
+			<% products.cartId.product.forEach(product => { %>
+			<li class="cart-items">
+				<div class="book">
+					<div class="cart-icon">
+						<span>
+							<a href="cart/<%= product._id %>/edit-item">
+								<i class="fas fa-pencil-alt"></i>
+							</a>
+						</span>
+						<span>
+							<a href="cart/<%= product._id %>/remove-item">
+								<i class="fas fa-trash-alt"></i>
+							</a>
+						</span>
+					</div>
 
-							<p><span>Title :</span><%= product.bookId.title %></p>
-							<p><span>Price :</span><%= product.bookId.price %></p>
-          		<% if(cartItem){ %>
-          			<% include editCart %>
-          		<% }else { %>
-								<p><span>Quantity :</span><%= product.quantity %></p>
-							<% } %>
-						</div>
+					<p><span>Title :</span><%= product.bookId.title %></p>
+					<p><span>Price :</span><%= product.bookId.price %></p>
+					<% if(cartItem){ %>
+					<% include editCart %>
+					<% }else { %>
+					<p><span>Quantity :</span><%= product.quantity %></p>
+					<% } %>
+				</div>
 
-						<button class="buy-btn">Buy now</button>
-					</li>
-				<% }) %>
+				<button class="buy-btn">Buy now</button>
+			</li>
+			<% }) %>
 			<% } %>
 
 			<%/* products.cartId.product.bookId.forEach(book => { %>
-				<p><%= products.cartId.product.bookId %></p>
-				<p><%= product.bookId.title %></p>
+			<p><%= products.cartId.product.bookId %></p>
+			<p><%= product.bookId.title %></p>
 			<% */%>
-			
+
 		</ul>
 	</nav>
 </section>

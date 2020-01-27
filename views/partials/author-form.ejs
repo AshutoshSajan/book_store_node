@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<title>Author form</title>
 	<link rel="stylesheet" href="/stylesheets/style.css">
 </head>
+
 <body>
 	<form action=<%= author ? "/authors/:id/update" : "/authors"%> method="POST" class="form">
-		<input type="text" name="name" placeholder="Name" value="<%= author ? author.name : "" %>"/>
-		<input type="email" name="email" placeholder="Email"value="<%= author ? author.email : ""  %>"/>
+		<input type="text" name="name" placeholder="Name" value="<%= author ? author.name : "" %>" />
+		<input type="email" name="email" placeholder="Email" value="<%= author ? author.email : ""  %>" />
 		<%#
 			<input id="sub-btn" type="file" name="image" placeholder="image" accept=".jpg, .jpeg, .png, .svg" multiple />
 		#%>
 		<input id="sub-btn" type="submit" value="<%= author ? "UPDATE AUTHOR": "ADD AUTHOR" %>" />
 	</form>
 </body>
+
 </html>

@@ -1,49 +1,57 @@
 var Author = require('../../models/Author');
-var Book = require('../../models/Book');
+// var Book = require('../../models/Book');
 
 module.exports = {
-	All_Authors:function(req,res,next) {
+	All_Authors: function (req, res, next) {
 		Author.find({}, (err, Authors) => {
-			if(err) return next(err);
+			if (err) return next(err);
 			res.json(Authors);
 		})
 	},
-	create_Author:function(req,res,next) {
+	create_Author: function (req, res, next) {
 		Author.create(req.body, (err, Author) => {
-			if(err) return next(err);
-			console.log(Author,"api create Author...................")
+			if (err) return next(err);
+			console.log(Author, "api create Author")
 			res.json(Author);
 		})
 	},
-	get_Author:function(req,res,next) {
-		Author.findOne({_id: req.params.id}, (err, Authors) => {
-			if(err) return next(err);
+	get_Author: function (req, res, next) {
+		Author.findOne({
+			_id: req.params.id
+		}, (err, Authors) => {
+			if (err) return next(err);
 			res.json(Authors);
 		})
 	},
-	update_Author:function(req,res,next) {
-		console.log("api put.........................")
-		Author.findByIdAndUpdate({_id: req.params.id},
-		req.body, (err, authors) => {
-			if(err) return next(err);
-			res.json(authors);
-		})
+	update_Author: function (req, res, next) {
+		console.log("api put")
+		Author.findByIdAndUpdate({
+				_id: req.params.id
+			},
+			req.body, (err, authors) => {
+				if (err) return next(err);
+				res.json(authors);
+			})
 	},
-	get_Author_Books: function(req,res,next) {
+	get_Author_Books: function (req, res, next) {
 		Author
-		.findOne({ _id:req.params.id })
-		.populate([{
-			path: "books"
-		}])
-		.exec ((err, books) => {
-			if(err) return next(err);
-			res.json(books);
-		})
+			.findOne({
+				_id: req.params.id
+			})
+			.populate([{
+				path: "books"
+			}])
+			.exec((err, books) => {
+				if (err) return next(err);
+				res.json(books);
+			})
 	},
-	delete_Author:function(req,res,next) {
+	delete_Author: function (req, res, next) {
 		console.log("api delete.........................")
-		Author.findOneAndDelete({_id: req.params.id}, (err, author) => {
-			if(err) return next(err);
+		Author.findOneAndDelete({
+			_id: req.params.id
+		}, (err, author) => {
+			if (err) return next(err);
 			res.json(author);
 		})
 	},
