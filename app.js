@@ -22,7 +22,7 @@ var apiRouter = require('./routes/api/api');
 
 
 // mongoose connect with mongodb database
-mongoose.connect("mongodb://localhost/bookList", {
+mongoose.connect("mongodb://localhost/book-store", {
   useNewUrlParser: true
 }, (err) => {
   err ? console.log(err, 'not connected to mongodb') : console.log('Successfully connected to mongodb');
