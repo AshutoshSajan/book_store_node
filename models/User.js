@@ -41,9 +41,10 @@ var userSchema = new Schema({
 
 userSchema.pre('save', function (next) {
 	if (this.password) {
-		this.password = bcrypt.hashSync(this.password, salt)
+		this.password = bcrypt.hashSync(this.password, salt);		
+		next();
 	}
-	next()
+	next();
 })
 
 var User = mongoose.model('User', userSchema);

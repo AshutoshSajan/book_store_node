@@ -41,7 +41,11 @@ module.exports = {
 	},
 
 	register: function (req, res, next) {
-		var user = req.body;
+		let newUser = req.body;
+
+		let {name, email, password } = req.body;
+		console.log(name, email, password, newUser, 'req body sign up.......................................');
+		
 		User.findOne({
 			email: req.body.email
 		}, (err, user) => {
@@ -53,7 +57,7 @@ module.exports = {
 				return res.send('user already exist');
 			} else if (!user) {
 
-				User.create(user, (err, user) => {
+				User.create(newUser, (err, user) => {
 					if (err) {
 						next(err)
 						console.log(err, "error while registering");
