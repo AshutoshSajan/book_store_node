@@ -16,19 +16,24 @@ var indexRouter = require('./routes/index');
 var booksRouter = require('./routes/books');
 var authorRouter = require('./routes/authors');
 var userRouter = require('./routes/users');
-var cartRouter = require('./routes/cart')
+var cartRouter = require('./routes/cart');
 var authRouter = require('./routes/auth');
 var apiRouter = require('./routes/api/api');
 
-
 // mongoose connect with mongodb database
-mongoose.connect("mongodb://localhost/book-store", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true
-}, (err) => {
-  err ? console.log(err, 'not connected to mongodb') : console.log('Successfully connected to mongodb');
-})
+mongoose.connect(
+  process.env.MONGO_URI,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  },
+  (err) => {
+    err
+      ? console.log(err, 'not connected to mongodb')
+      : console.log('Successfully connected to mongodb');
+  }
+);
 
 //passport require
 require('./module/passport');
@@ -40,7 +45,6 @@ require('./models/User');
 require('./models/Cart');
 require('./models/Product');
 
-
 // router files
 
 var app = express();
@@ -51,20 +55,27 @@ app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({
-  extended: false
-}));
+app.use(
+  express.urlencoded({
+    extended: false,
+  })
+);
+
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true,
-  store: new MongoStore({
-    mongooseConnection: mongoose.connection
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+    }),
+    // cookie: { secure: true }
   })
-  // cookie: { secure: true }
-}));
+);
+
 app.use(passport.initialize());
 app.use(passport.session());
 
