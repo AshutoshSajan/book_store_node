@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var apiController = require('../../controllers/apiControllers/userApi.js');
-var authController = require('../../controllers/authController');
+// var authController = require('../../controllers/authController');
 
 router.get('/', apiController.All_Users);
 router.post('/', apiController.create_User);
